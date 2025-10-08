@@ -6,7 +6,7 @@
 #SBATCH --gres=gpu:2              # Number of GPUs
 #SBATCH --time=00:05:00           # Max run time (HH:MM:SS)
 #SBATCH --cpus-per-task=2         # CPUs per process 
-#SBATCH --mem=1GB                 # Memory per node 
+#SBATCH --mem=8GB                 # Memory per node 
 
 # Activate your environment
 source /gpfs/u/home/AICD/AICDnhns/.local/share/enroot/colosseum/opt/conda/etc/profile.d/conda.sh
