@@ -3,7 +3,6 @@ import torch
 import torch.distributed as dist
 import torch.nn as nn
 import torch.optim as optim
-
 from torch.nn.parallel import DistributedDataParallel as DDP
 
 class ToyModel(nn.Module):
@@ -24,7 +23,7 @@ def demo_basic():
     rank = dist.get_rank()
 
     print(f"Start running basic DDP example on rank {rank}.")
-    # create model and move it to GPU with id rank
+
     device_id = rank % torch.accelerator.device_count()
 
     model = ToyModel().to(device_id)
@@ -40,6 +39,11 @@ def demo_basic():
     optimizer.step()
     dist.destroy_process_group()
     print(f"Finished running basic DDP example on rank {rank}.")
+    print("-"*100)
+    print(f"Outputs: {outputs}")
+    print(f"Labels: {labels}")
+    print(f"Loss: {loss_fn(outputs, labels)}")
+    print("-"*100)
 
 if __name__ == "__main__":
     demo_basic()
